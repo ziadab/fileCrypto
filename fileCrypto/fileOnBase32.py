@@ -12,13 +12,14 @@ class fileOnBase32():
 	#Encryption And Decryption of File Was Never Easy Than Before
 	:)"""
 
-	def __init__(self,path):
+	def __init__(self,path,extension='.cry'):
 		self.path = str(path)
+		self.extension = str(extension)
 		
-	def encrypt(self):
+	def encode(self):
 		"""To give the Order To Encrypt The File"""
 
-		if '.cry' not in self.path:
+		if self.extension not in self.path:
 			file = open(self.path,"rb")
 			file_data = file.read()
 			file.close()
@@ -35,14 +36,14 @@ class fileOnBase32():
 			print('writing in you file ...')
 			print("It's will Take a Will ")
 			os.remove(self.path)
-			newfile = open(str(self.path) + '.cry',"wb")
+			newfile = open(str(self.path) + self.extension,"wb")
 			newfile.write(self.encoded)
 			newfile.close()
 			print('Done.')
 		else:
 			print("The File is already encrypt")
 
-	def decrypt(self):
+	def decode(self):
 		"""To Give The Order To Decrypt The File"""
 
 		if ".cry" in self.path:
@@ -59,7 +60,7 @@ class fileOnBase32():
 			######################## Base64 Decoding ###################
 			self.decoded = base64.b32decode(file_data)
 			############################################################
-			self.path2 = self.path.replace('.cry',"")
+			self.path2 = self.path.replace(self.extension,"")
 			os.remove(self.path)
 			print('Writing in Your File...')
 			newfile = open(self.path2,'wb')

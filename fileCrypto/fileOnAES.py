@@ -15,18 +15,19 @@ class fileOnAES():
 	#Encryption And Decryption of File Was Never Easy Than Before
 	:)"""
 
-	def __init__(self,path,key):
+	def __init__(self,path,key,extension='.cry'):
 		"""To Get The File Direction And The Key From User"""
 		self.path = str(path)
 		tmp = hashlib.md5(key.encode('utf8')).hexdigest()
 		self.key = str.encode(tmp) 
+		self.extension = str(extension)
 
 
 	def encrypt(self):
 		"""To give the Order To Encrypt The File"""
 
 		#Check If The File is 
-		if '.cry' not in self.path:
+		if self.extension not in self.path:
 			with open(self.path, 'rb') as file:
 				file_data = file.read()
 			#Start To CHecking The PlatForm
@@ -43,7 +44,7 @@ class fileOnAES():
 			print('writing in you file ...')
 			print("It's will Take a Will ")
 			os.remove(self.path)
-			with open(str(self.path) + '.cry','wb') as newfile:
+			with open(str(self.path) + self.extension,'wb') as newfile:
 				newfile.write(self.encoded)
 			print('Done.')
 		else:
@@ -51,7 +52,7 @@ class fileOnAES():
 
 	def decrypt(self):
 		"""To Give The Order To Decrypt The File"""
-		if '.cry' in self.path:
+		if self.extension in self.path:
 			with open(self.path,'rb') as file:
 				file_data = file.read()
 			#Start To CHecking The PlatForm
@@ -65,7 +66,7 @@ class fileOnAES():
 			aes = pyaes.AESModeOfOperationCTR(self.key)
 			self.decoded = aes.decrypt(file_data)
 			############################################################################
-			self.path2 = self.path.replace('.cry',"")
+			self.path2 = self.path.replace(self.extension,"")
 			os.remove(self.path)
 			print('Writing in Your File...')
 			with open(self.path2, "wb") as newfile:
