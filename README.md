@@ -2,6 +2,11 @@
 
 Encryption and Decryption Files Was Never Easier Than Before and for EVERYONE !!!
 
+## Dependencies
+
+* pyaes
+* pycrypto
+
 ## Features
 
 * Anyone Can Use It, Beginner or Profissional
