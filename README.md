@@ -30,6 +30,13 @@ But You can Use Any length You want No Problem, **Wait What You Just Say Specifi
 
 Yeah. I did But I Use MD5 Hash To Get The Specific length. However, The Input Was .
 
+## How Can I Install It
+
+from pip using :
+
+```pip3 install fileCrypto```
+
+
 ## How I Can Use It ??
 
 Like I Say In Description It's Almost Easy For Every One To Use It.
@@ -192,6 +199,15 @@ Just Change The **fileOnBase64** to **fileOnBase32** or **fileOnBase16** If you 
 
 FAQ
 ---
+#### What's New in fileCrypto 2.0
+
+Adding:
+
+* DES
+* DES3
+* Blowfish
+
+And Reduce Time complexity
 
 #### What You Will Do In Futur 
 
@@ -199,10 +215,9 @@ I will Add Other Encryption ALgorithm
 
 Like :
 
-* Blowfish
-* DES 
-* DES3
 * ARC2
+* ARC4
+* Fernet
 ...
 
 #### How do I get a question I have added?

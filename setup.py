@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="fileCrypto",
-    version="1.2",
+    version="2.0",
     author="Ziad Abouelfarah",
     author_email="zain.work02@gmail.com",
     description="Protecting File Was Never Easier Than Before",
