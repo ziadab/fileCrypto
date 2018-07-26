@@ -1,12 +1,13 @@
-import os
+import time
 import platform 
 import base64
+import os
 
-class fileOnBase64():
+class fileOnBase16():
 	"""This Class Is To Encrypt And Decrypt Your File In Easy Way No Complaxy
 	Is Just Like That :
-	from fileCrypto import Base64
-	myfile = fileOnBase64("exemple.jpg")
+	import fileCrypto
+	myfile = fileCrypto.fileOnBase16("exemple.jpg")
 	myfile.encrypt() #This Methode To Encrypt The File
 	myfile.decrypt() #This Methode To Decrypt the File
 	#Encryption And Decryption of File Was Never Easy Than Before
@@ -14,38 +15,38 @@ class fileOnBase64():
 
 	def __init__(self,path,extension='.cry'):
 		self.path = str(path)
-		self.extension = extension
+		self.extension = str(extension)
 		
 	def encode(self):
 		"""To give the Order To Encrypt The File"""
-
+		t = time.time()
 		if self.extension not in self.path:
 			file = open(self.path,"rb")
 			file_data = file.read()
 			file.close()
 			#Start To CHecking The PlatForm
 			if platform.system() == "Windows":
-				self.path = self.path.split("\\")[-1]
+				self.path_dir = self.path.split("\\")[-1]
 			elif platform.system() == "Linux":
-				self.path = self.path.split('/')[-1]
+				self.path_dir = self.path.split('/')[-1]
 			#End Checking Wich Platform
-			print('Encryption of '+str(self.path)+'...')
+			print('Encryption of '+self.path_dir+'...')
+			print('It\'s may take a will')
 			######################### Base 64 ##########################
 			self.encoded = base64.b64encode(file_data)
 			############################################################
 			print('writing in you file ...')
-			print("It's will Take a Will ")
 			os.remove(self.path)
 			newfile = open(str(self.path) + self.extension,"wb")
 			newfile.write(self.encoded)
 			newfile.close()
-			print('Done.')
+			print('Done In '+str(time.time() -t))
 		else:
 			print("The File is already encrypt")
 
 	def decode(self):
 		"""To Give The Order To Decrypt The File"""
-
+		t = time.time()
 		if ".cry" in self.path:
 			file = open(self.path,"rb")
 			file_data = file.read()
@@ -66,6 +67,7 @@ class fileOnBase64():
 			newfile = open(self.path2,'wb')
 			newfile.write(self.decoded)
 			newfile.close()
+			print('Done In '+str(time.time() -t))
 		else:
 			print("The File is Not Encrypted To Decrypted")
 
