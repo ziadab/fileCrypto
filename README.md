@@ -102,7 +102,7 @@ aes.decrypt()
 
 import fileCrypto
 
-#For fileOnAES is 3 parametre
+#For fileOnXOR is 3 parametre
 #The First is The File Derection
 #Seconde Is for The Key(password) 
 #This Last is for extension and I Make The Defaut One is '.cry'
@@ -128,7 +128,7 @@ Exemple :
 
 import fileCrypto
 
-#For fileOnAES is 3 parametre
+#For fileOnXOR is 3 parametre
 #The First is The Encrypt File Derection 
 #Seconde Is for The Key(password) That U USe
 #This Last is for extension and I Make The Defaut One is '.cry' 
@@ -155,7 +155,7 @@ In Those Algorithm you will Use encode and decode methode because there are not 
 
 import fileCrypto
 
-#For fileOnAES is two parametre
+#For fileOnBase64 is two parametre
 #The First is The File Derection
 #This Last is for extension and I Make The Defaut One is '.cry'
 base64 = fileCrypto.fileOnBase64('exemple.jpg','123456789')
@@ -180,7 +180,7 @@ Exemple :
 
 import fileCrypto
 
-#For fileOnAES is 2 parametre
+#For fileOnBase64 is 2 parametre
 #The First is The Encrypt File Derection 
 #This Last is for extension and I Make The Defaut One is '.cry' 
 #But Use WHat You Encrypt With
