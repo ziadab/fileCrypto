@@ -1,6 +1,7 @@
 try:
 	import pyaes
 except:
+	import sys
 	sys.exit("You Need To Download First pyaes Module.\nusing the following command : 'pip3 install pyaes'")
 
 import time

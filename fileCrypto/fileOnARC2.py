@@ -2,6 +2,7 @@ try:
 	from Crypto.Cipher import ARC2
 	from Crypto import Random
 except:
+	import sys
 	sys.exit("You Need To Download First pycrypto Module.\nusing the following command : 'pip3 install pycrypto'")
 
 import time
