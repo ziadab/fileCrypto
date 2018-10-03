@@ -1,8 +1,9 @@
 try:
-	import pyaes
+	from Crypto.Cipher import ARC2
+	from Crypto import Random
 except:
 	import sys
-	sys.exit("You Need To Download First pyaes Module.\nusing the following command : 'pip3 install pyaes'")
+	sys.exit("You Need To Download First pycrypto Module.\nusing the following command : 'pip3 install pycrypto'")
 
 import time
 import platform
@@ -10,7 +11,7 @@ import base64
 import os
 import hashlib
 
-class fileOnAES():
+class fileOnARC2():
 	"""This Class Is To Encrypt And Decrypt Your File In Easy Way No Complaxy
 	Is Just Like That :
 	import fileCrypto
@@ -44,14 +45,18 @@ class fileOnAES():
 			# #End Checking Wich Platform
 			# print('Encryption of '+self.path_dir+'...')
 			# print('It\'s may take a will')
-			######################### AES Algorithm #########################
-			aes = pyaes.AESModeOfOperationCTR(self.key)
-			self.encoded = aes.encrypt(file_data)
+			######################### ARC2 Algorithm #########################
+			padding = b'}'
+			bs = ARC2.block_size
+			p = lambda s:s + (bs - len(s) % bs) * padding
+			iv = Random.new().read(8)
+			c = ARC2.new(self.key,ARC2.MODE_CBC,iv)
+			self.encrypt = base64.b64encode(iv + c.encrypt(p(file_data)))
 			#################################################################
 			# print('writing in you file ...')
 			os.remove(self.path)
 			with open(str(self.path) + self.extension,'wb') as newfile:
-				newfile.write(self.encoded)
+				newfile.write(self.encrypt)
 			if timerPrinting:
 				print('Done In '+str(time.time() -t))
 		else:
@@ -71,16 +76,17 @@ class fileOnAES():
 			# #End Checking Wich Platform
 			# print("Decrypting of "+str(self.path)+"...")
 			############################################################################
-			aes = pyaes.AESModeOfOperationCTR(self.key)
-			self.decoded = aes.decrypt(file_data)
+			iv = base64.b64decode(file_data)[:8]
+			realData = base64.b64decode(file_data)[8:]
+			d = ARC2.new(self.key,ARC2.MODE_CBC,iv)
+			self.decrypt = d.decrypt(realData)
 			############################################################################
 			self.path2 = self.path.replace(self.extension,"")
 			os.remove(self.path)
 			#print('Writing in Your File...')
 			with open(self.path2, "wb") as newfile:
-				newfile.write(self.decoded)
+				newfile.write(self.decrypt)
 			if timerPrinting:
 				print('Done In '+str(time.time() -t))
 		else:
 			print("The File is Not Encrypted To Decrypted")
-

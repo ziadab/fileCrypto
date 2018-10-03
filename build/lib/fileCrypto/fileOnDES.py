@@ -23,28 +23,28 @@ class fileOnDES():
 	#Encryption And Decryption of File Was Never Easy Than Before
 	:)"""
 
-	def __init__(self,path,key,extension='.cry'):
+	def __init__(self,path,key,extension='.filecrypto'):
 		self.path = str(path)
 		tmp = int(hashlib.sha1(key.encode('utf8')).hexdigest(), 16) % (10 ** 8)
 		tmp = str(tmp)
 		self.key = str.encode(tmp) 
 		self.extension = str(extension)
 
-	def encrypt(self):
+	def encrypt(self,timerPrinting=False):
 		"""To give the Order To Encrypt The File"""
 
 		t = time.time() 
 		if self.extension not in self.path:
 			with open(self.path,"rb") as infile:
 				file_data = infile.read()
-			#Start To CHecking The PlatForm
-			if platform.system() == "Windows":
-				self.path_dir = self.path.split("\\")[-1]
-			elif platform.system() == "Linux":
-				self.path_dir = self.path.split('/')[-1]
-			#End Checking Wich Platform
-			print('Encryption of '+self.path_dir+'...')
-			print('It\'s may take a will')
+			# #Start To CHecking The PlatForm
+			# if platform.system() == "Windows":
+			# 	self.path_dir = self.path.split("\\")[-1]
+			# elif platform.system() == "Linux":
+			# 	self.path_dir = self.path.split('/')[-1]
+			# #End Checking Wich Platform
+			# print('Encryption of '+self.path_dir+'...')
+			# print('It\'s may take a will')
 			############################ DES Encryption #################
 			bs = DES.block_size
 			iv = Random.new().read(int(bs/2))
@@ -53,27 +53,28 @@ class fileOnDES():
 			encrypt_data = iv + c.encrypt(file_data)
 			self.encrypt = base64.b64encode(encrypt_data)
 			########################### END Encryption ###################
-			print('writing your file...')
+			#print('writing your file...')
 			os.remove(self.path)
 			with open(self.path + self.extension ,"wb") as outfile:
 				outfile.write(self.encrypt)
-			print("Done In "+str(time.time() -t))
+			if timerPrinting:
+				print("Done In "+str(time.time() -t))
 		else:
 			print('The file is Already encrypt.')
 
-	def decrypt(self):
+	def decrypt(self,timerPrinting=False):
 		"""To Give The Order To Decrypt The File"""
 		t = time.time()
 		if self.extension in self.path:
 			with open(self.path,'rb') as file:
 				file_data = file.read()
-			#Start To CHecking The PlatForm
-			if platform.system() == "Windows":
-				self.path = self.path.split("\\")[-1]
-			elif platform.system() == "Linux":
-				self.path = self.path.split('/')[-1]
-			#End Checking Wich Platform
-			print("Decrypting of "+str(self.path)+"...")
+			# #Start To CHecking The PlatForm
+			# if platform.system() == "Windows":
+			# 	self.path = self.path.split("\\")[-1]
+			# elif platform.system() == "Linux":
+			# 	self.path = self.path.split('/')[-1]
+			# #End Checking Wich Platform
+			# print("Decrypting of "+str(self.path)+"...")
 			######################### Des Decryption ###################################
 			bs = DES.block_size
 			iv = base64.b64decode(file_data)[:4]
@@ -84,10 +85,11 @@ class fileOnDES():
 			############################################################################
 			self.path2 = self.path.replace(self.extension,"")
 			os.remove(self.path)
-			print('Writing in Your File...')
+			#print('Writing in Your File...')
 			with open(self.path2,'wb') as outfile:
 				outfile.write(self.decrypt)
-			print('Done In '+str(time.time() -t) +' secondes')
+			if timerPrinting:
+				print('Done In '+str(time.time() -t) +' secondes')
 		else:
 			print("The File is Not Encrypted To Decrypted")
 

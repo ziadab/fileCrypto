@@ -21,15 +21,15 @@ class fileOnXOR():
 	#Encryption And Decryption of File Was Never Easy Than Before
 	:)"""
 
-	def __init__(self,path,key,extension='.cry'):
+	def __init__(self,path,key,extension='.filecrypto'):
 		"""To Get The File Direction And The Key From User"""
 		self.path = str(path)
 		tmp = hashlib.md5(key.encode('utf8')).hexdigest()
 		self.key = str.encode(tmp)
-		self.extension = str(extension) 
+		self.extension = str(extension)
 		
 
-	def encrypt(self):
+	def encrypt(self,timerPrinting=False):
 		"""To give the Order To Encrypt The File"""
 		t = time.time()
 		#Check If The File is 
@@ -37,48 +37,54 @@ class fileOnXOR():
 			with open(self.path, 'rb') as file:
 				file_data = file.read()
 			#Start To CHecking The PlatForm
-			if platform.system() == "Windows":
-				self.path_dir = self.path.split("\\")[-1]
-			elif platform.system() == "Linux":
-				self.path_dir = self.path.split('/')[-1]
-			#End Checking Wich Platform
-			print('Encryption of '+self.path_dir+'...')
-			print('It\'s may take a will')
+			# if platform.system() == "Windows":
+			# 	self.path_dir = self.path.split("\\")[-1]
+			# elif platform.system() == "Linux":
+			# 	self.path_dir = self.path.split('/')[-1]
+			# #End Checking Wich Platform
+			# print('Encryption of '+self.path_dir+'...')
+			# print('It\'s may take a will')
 			######################### XOR Algorithm #########################
 			cipher = XOR.new(self.key)
 			self.encoded = base64.b64encode(cipher.encrypt(file_data))
 			#################################################################
-			print('writing in you file ...')
+			 #print('writing in you file ...')
 			os.remove(self.path)
 			with open(str(self.path) + self.extension,"wb") as outfile:
 				outfile.write(self.encoded)
-			print('Done In '+str(time.time() -t))
+			if timerPrinting:
+				print('Done In '+str(time.time() -t))
+			else:
+				pass
 		else:
 			print("The File is already encrypt")
 
-	def decrypt(self):
+	def decrypt(self,timerPrinting=False):
 		t = time.time()
 		"""To Give The Order To Decrypt The File"""
 		if self.extension in self.path:
 			with open(self.path,'rb') as file:
 				file_data = file.read()
 			#Start To CHecking The PlatForm
-			if platform.system() == "Windows":
-				self.path = self.path.split("\\")[-1]
-			elif platform.system() == "Linux":
-				self.path = self.path.split('/')[-1]
-			#End Checking Wich Platform
-			print("Decrypting of "+str(self.path)+"...")
+			# if platform.system() == "Windows":
+			# 	self.path = self.path.split("\\")[-1]
+			# elif platform.system() == "Linux":
+			# 	self.path = self.path.split('/')[-1]
+			# End Checking Wich Platform
+			# print("Decrypting of "+str(self.path)+"...")
 			############################################################################
 			cipher = XOR.new(self.key)
 			self.decoded = cipher.decrypt(base64.b64decode(file_data))
 			############################################################################
 			self.path2 = self.path.replace(self.extension,"")
 			os.remove(self.path)
-			print('Writing in Your File...')
+			# print('Writing in Your File...')
 			with open(self.path2,'wb') as outfile:
 				outfile.write(self.decoded)
-			print('Done In '+str(time.time() -t))
+			if timerPrinting:
+				print('Done In '+str(time.time() -t))
+			else:
+				pass
 		else:
 			print("The File is Not Encrypted To Decrypted")
 

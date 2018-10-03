@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: fileCrypto
-Version: 2.0
+Version: 3.4
 Summary: Protecting File Was Never Easier Than Before
 Home-page: https://github.com/ziadab/fileCrypto
 Author: Ziad Abouelfarah
@@ -37,6 +37,13 @@ Description: # fileCrypto
         But You can Use Any length You want No Problem, **Wait What You Just Say Specific LENGTH**
         
         Yeah. I did But I Use MD5 Hash To Get The Specific length. However, The Input Was .
+        
+        ## How Can I Install It
+        
+        from pip using :
+        
+        ```pip3 install fileCrypto```
+        
         
         ## How I Can Use It ??
         
@@ -103,7 +110,7 @@ Description: # fileCrypto
         
         import fileCrypto
         
-        #For fileOnAES is 3 parametre
+        #For fileOnXOR is 3 parametre
         #The First is The File Derection
         #Seconde Is for The Key(password) 
         #This Last is for extension and I Make The Defaut One is '.cry'
@@ -129,7 +136,7 @@ Description: # fileCrypto
         
         import fileCrypto
         
-        #For fileOnAES is 3 parametre
+        #For fileOnXOR is 3 parametre
         #The First is The Encrypt File Derection 
         #Seconde Is for The Key(password) That U USe
         #This Last is for extension and I Make The Defaut One is '.cry' 
@@ -156,7 +163,7 @@ Description: # fileCrypto
         
         import fileCrypto
         
-        #For fileOnAES is two parametre
+        #For fileOnBase64 is two parametre
         #The First is The File Derection
         #This Last is for extension and I Make The Defaut One is '.cry'
         base64 = fileCrypto.fileOnBase64('exemple.jpg','123456789')
@@ -181,7 +188,7 @@ Description: # fileCrypto
         
         import fileCrypto
         
-        #For fileOnAES is 2 parametre
+        #For fileOnBase64 is 2 parametre
         #The First is The Encrypt File Derection 
         #This Last is for extension and I Make The Defaut One is '.cry' 
         #But Use WHat You Encrypt With
@@ -210,16 +217,45 @@ Description: # fileCrypto
         
         And Reduce Time complexity
         
-        #### What You Will Do In Futur 
+        #### What's New in fileCrypto 3.0
         
-        I will Add Other Encryption ALgorithm
-        
-        Like :
-        
+        Adding : 
         * ARC2
         * ARC4
-        * Fernet
-        ...
+        
+        
+        ### What's New in fileCrypto 3.4
+        
+        Fixing :
+        * Bug in Base64, Base32 and Base16 
+        
+        Adding : 
+        * Time Printing 
+        
+        Wait what "Time Printing":
+        ** Yeah if you want to print the time complexity for the user or your Self **
+        
+        ## How use Time Printing:
+        
+        You need just to make the timerPrinting argv True. 
+        
+        Like this:
+        
+        ```python
+        import fileCrypto
+        
+        cipher = fileCrypto.fileOnAES("exemple.jpg","123456789")
+        cipher.encrypt(timerPrinting=True)
+        cipher.decrypt(timerPrinting=True)
+        
+        #[Out]: 
+        # Done In 0.142667865753174
+        # Done In 0,132926678657531
+        
+        ```
+        
+        * You can apply this for all the classes in the package
+        
         
         #### How do I get a question I have added?
         

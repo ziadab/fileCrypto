@@ -2,6 +2,8 @@ README.md
 setup.py
 fileCrypto/__init__.py
 fileCrypto/fileOnAES.py
+fileCrypto/fileOnARC2.py
+fileCrypto/fileOnARC4.py
 fileCrypto/fileOnBase16.py
 fileCrypto/fileOnBase32.py
 fileCrypto/fileOnBase64.py
