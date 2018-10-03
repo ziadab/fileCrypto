@@ -226,7 +226,7 @@ Adding :
 
 Wait what "Time Printing":
 
-** Yeah if you want to print the time complexity for the user or your Self **
+**Yeah if you want to print the time complexity for the user or your Self**
 
 ## How use Time Printing:
 
