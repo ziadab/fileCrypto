@@ -209,16 +209,45 @@ Adding:
 
 And Reduce Time complexity
 
-#### What You Will Do In Futur 
+#### What's New in fileCrypto 3.0
 
-I will Add Other Encryption ALgorithm
-
-Like :
-
+Adding : 
 * ARC2
 * ARC4
-* Fernet
-...
+
+
+### What's New in fileCrypto 3.4
+
+Fixing :
+* Bug in Base64, Base32 and Base16 
+
+Adding : 
+* Time Printing 
+
+Wait what "Time Printing":
+** Yeah if you want to print the time complexity for the user or your Self **
+
+## How use Time Printing:
+
+You need just to make the timerPrinting argv True. 
+
+Like this:
+
+```python
+import fileCrypto
+
+cipher = fileCrypto.fileOnAES("exemple.jpg","123456789")
+cipher.encrypt(timerPrinting=True)
+cipher.decrypt(timerPrinting=True)
+
+#[Out]: 
+# Done In 0.142667865753174
+# Done In 0,132926678657531
+
+```
+
+* You can apply this for all the classes in the package
+
 
 #### How do I get a question I have added?
 
